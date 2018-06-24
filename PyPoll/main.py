@@ -41,7 +41,7 @@ with open(electionpath + '/election_data_output.txt', 'w') as outputfile:
         print(
             f"{c} received:\n {v / votes * 100:,.3f}% of the votes with:\n {v} votes.")
         outputfile.write(
-            f"{c} received:\n {v / votes * 100:,.3f}% of the votes with:\n {v} votes.")
+            f"{c} received:\n {v / votes * 100:,.3f}% of the votes with:\n {v} votes.\n")
         if v > vmax:
             vmax = v
             winner = c
