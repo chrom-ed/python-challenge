@@ -1,0 +1,7 @@
+Financial Analysis
+--------------------------------------
+Total months of data: 41
+Net profit or loss over given period: $18,971,412.00
+Average change in value over given period: $462,717.37
+The greatest increase, or profit, occurred during Sep-15 in the amount of $1,195,111.00
+The greatest decrease, or loss, occurred during Aug-14 in the amount of $-1,172,384.00
