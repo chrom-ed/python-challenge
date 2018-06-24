@@ -1,8 +1,9 @@
 # main file for PyBank
 
 # import data file
+filepath = input("Please enter path to data file's directory ")
 import csv
-with open('/Users/Evan/Git/python-challenge/PyBank/budget_data.csv') as csvfile:
+with open(filepath + '/budget_data.csv') as csvfile:
     # create total profit/loss variable
     totalNet = 0
     maxnet = 0
@@ -31,8 +32,8 @@ with open('/Users/Evan/Git/python-challenge/PyBank/budget_data.csv') as csvfile:
                 lossmonth = lstRow[0]
 
 # create output text file
-outputFile = open(
-    '/Users/Evan/Git/python-challenge/PyBank/budget_data_output.txt', 'w')
+outputFile = open(filepath +
+                  '/budget_data_output.txt', 'w')
 
 # begin analysis printout
 print("Financial Analysis")
@@ -40,7 +41,7 @@ outputFile.write("Financial Analysis" + '\n')
 print("--------------------------------------")
 outputFile.write("--------------------------------------" + '\n')
 # print final month total
-print("Total months of data: " + str(totalMonths))
+print(f"Total months of data: {totalMonths}")
 outputFile.write("Total months of data: " + str(totalMonths) + '\n')
 
 # print sum of profit/loss
