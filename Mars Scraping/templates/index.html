@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mars!</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <style>
+    p {
+      color: white;
+      text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+
+    td {
+      color: white;
+      text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+
+    h2 {
+      color: white;
+      text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-4">
+        <div class="articles">
+          <p class="articlesp">
+            <h2>Mars News</h2>
+          </p>
+        </div>
+      </div>
+      <div class="col-xs-4">
+        <div class="weather">
+          <p>
+            <h2>Mars Weather</h2>
+          </p>
+          <p class="weatherp"></p>
+        </div>
+        <div class="hemispheres">
+          </br>
+          <p>
+            <h2>Full Resolution Mars Hemispheres</h2>
+          </p><img>
+        </div>
+      </div>
+      <div class="col-xs-4">
+        <div class="table">
+          <p class="tablep">
+            <h2>Mars Facts</h2>
+          </p>
+        </div>
+        <a href="/scrape" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Scrape Data</a>
+      </div>
+    </div>
+
+    <!-- javascript -->
+    <script>
+      var url = `/data`;
+      d3.json(url).then(function (data) {
+        // news articles
+        data.articles.slice(0, 5).forEach(element => {
+          Object.entries(element).forEach(([key, value]) => {
+            var p = d3.select(".articles").append("p").text(value);
+          });
+        });
+        // background image
+        d3.select("body").attr("background", data.big_image);
+        // weather 
+        d3.select(".weatherp").text(data.weather);
+        // table
+        d3.select(".table").append('div').html(data.table)
+        // hemispheres, used "full resolution" tiff files which won't display inline
+        data.hemispheres.forEach(element => {
+          Object.entries(element).forEach(([key, value]) => {
+            var link = d3.select(".hemispheres").append("a").attr("href", value).text(key).append("p");
+          });
+        });
+      });
+    </script>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+</body>
+
+</html>
